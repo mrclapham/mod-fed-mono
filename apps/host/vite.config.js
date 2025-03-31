@@ -14,8 +14,8 @@ export default defineConfig({
     federation({
       name: 'host-app',
       remotes: {
-        // Update to point to the correct location
-        remote: 'http://localhost:5001/remoteEntry.js',
+        // Update to point to the correct location - now looking in the assets folder
+        remote: 'http://localhost:5001/assets/remoteEntry.js',
       },
       shared: ['react', 'react-dom']
     })

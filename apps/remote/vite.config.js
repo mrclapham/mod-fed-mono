@@ -13,9 +13,9 @@ export default defineConfig({
     react(),
     federation({
       name: 'remote-app',
-      filename: 'remoteEntry.js',
+      filename: 'remoteEntry.js', // This should be at the root of the dist directory
       exposes: {
-        './Button': './src/components/Button.jsx',
+        './Button': './src/components/Button.tsx',
       },
       shared: ['react', 'react-dom']
     })
@@ -24,12 +24,16 @@ export default defineConfig({
     modulePreload: false,
     target: 'esnext',
     minify: false,
-    cssCodeSplit: false
+    cssCodeSplit: false,
+    outDir: 'dist',
   },
   server: {
-    hmr: true, // Enable hot module replacement
-    watch: {
-      usePolling: true // For watching file changes in certain environments
-    }
+    port: 5001,
+    strictPort: true,
+    hmr: true
+  },
+  preview: {
+    port: 5001,
+    strictPort: true
   }
 });

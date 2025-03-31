@@ -14,7 +14,8 @@ export default defineConfig({
     federation({
       name: 'host-app',
       remotes: {
-        remote: 'http://localhost:5001/assets/remoteEntry.js',
+        // Update to point to the correct location
+        remote: 'http://localhost:5001/remoteEntry.js',
       },
       shared: ['react', 'react-dom']
     })
@@ -26,6 +27,12 @@ export default defineConfig({
     cssCodeSplit: false
   },
   server: {
+    fs: {
+      // Allow serving files from one level up to the project root
+      allow: ['..'],
+    },
+    port: 5000,
+    strictPort: true,
     hmr: true, // Enable hot module replacement
     watch: {
       usePolling: true // For watching file changes in certain environments
